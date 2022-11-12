@@ -34,6 +34,7 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:sanctum'], function () {
         Route::delete('/posts/{post}', [\App\Http\Controllers\PostController::class, 'destroy']);
     });
 
+    //only for admin user
     Route::group(['middleware' => 'roles', 'roles' => ['admin']], function () {
         Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
         Route::post('users', [\App\Http\Controllers\UserController::class, 'store']);

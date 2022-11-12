@@ -14,6 +14,12 @@ class AuthController extends Controller
 {
     use ApiHelper;
 
+    /**
+     * user register
+     *
+     * @param RegisterUserRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(RegisterUserRequest $request)
     {
         $user = User::create([
@@ -30,6 +36,12 @@ class AuthController extends Controller
         return $this->apiSuccess($user, 'User registered successfully !');
     }
 
+    /**
+     * user login
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(Request $request)
     {
         if (!Auth::attempt($request->only('email', 'password'))) {
